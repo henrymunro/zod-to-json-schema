@@ -40,6 +40,7 @@ export type Options<Target extends Targets = "jsonSchema7"> = {
     seen: Seen | undefined,
     forceResolution?: boolean,
   ) => JsonSchema7Type | undefined | typeof ignoreOverride;
+  enableReadonly: boolean;
 };
 
 export const defaultOptions: Options = {
@@ -61,7 +62,8 @@ export const defaultOptions: Options = {
   applyRegexFlags: false,
   emailStrategy: "format:email",
   base64Strategy: "contentEncoding:base64",
-  nameStrategy: "ref"
+  nameStrategy: "ref",
+  enableReadonly: false,
 };
 
 export const getDefaultOptions = <Target extends Targets>(
