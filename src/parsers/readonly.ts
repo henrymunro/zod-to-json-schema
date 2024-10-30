@@ -3,5 +3,9 @@ import { parseDef } from "../parseDef.js";
 import { Refs } from "../Refs.js";
 
 export const parseReadonlyDef = (def: ZodReadonlyDef<any>, refs: Refs) => {
-  return parseDef(def.innerType._def, refs);
+  const schema = parseDef(def.innerType._def, refs);
+  if (schema && refs.enableReadonly) {
+    schema.readOnly = true;
+  }
+  return schema;
 };
